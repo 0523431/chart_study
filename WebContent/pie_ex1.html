@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>파이 그래프</title>
+<script type="text/javascript" src="http://www.chartjs.org/dist/2.9.3/Chart.min.js">
+</script>
+<script src="http://www.chartjs.org/samples/latest/utils.js">
+</script>
+<style>
+	canvas{
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+	}
+</style>
+</head>
+<body>
+<body>
+	<div id="canvas-holder" style="width:80%;">
+		<canvas id="canvas"></canvas>
+	</div>
+	
+	<script>
+		// 1부터 100까지의 임의의 수 (round : 100까지)
+		var randomScalingFactor = function() {
+			return Math.round(Math.random() *100);
+		}
+		
+		var MONTHS = ['January', '2월', 'March', '4월', 'May', '6월', 'July', '8월', 'September', '10월', 'November', '12월'];
+		
+		window.chartColors = {
+				red: 'rgb(255,100,130)',
+				orange: 'rgb(255,160, 65)',
+				yellow: 'rgb(255,205, 85)',
+				green: 'rgb(75, 190, 190)',
+				blue: 'rgb(55, 160, 235)',
+				purple: 'rgb(155, 100, 255)',
+				grey: 'rgb(200, 200, 200)'
+		};
+		
+		var config = {
+			type: 'pie',
+			data: {
+				datasets: [{
+					data: [randomScalingFactor(),20,70,10,15,35,10,16,30,45,25,25],
+					backgroundColor: [
+						window.chartColors.red,
+						window.chartColors.orange,
+						window.chartColors.yellow,
+						window.chartColors.green,
+						window.chartColors.blue,
+						window.chartColors.purple,
+						window.chartColors.grey,
+						"#ff7761","#A593E0","#30A9DE","#E53A40"
+					],
+					label : "파이 그래프를 그려서 나중에 써먹자"
+				}],
+				labels : MONTHS
+			},
+			options: {
+				responsive: true,
+				legend : {
+					position : 'top'
+				},
+				title: {
+					display: true,
+					text: '월별 생활비'
+				},
+				animation: {
+					animateScale: true,
+					animateRotate: true
+				}
+			}
+		};
+
+		window.onload = function() {
+			var ctx = document.getElementById('canvas').getContext('2d');
+			window.myLine = new Chart(ctx, config);
+		};
+	</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>막대 그래프와 선그래프</title>
+<script type="text/javascript" src="http://www.chartjs.org/dist/2.9.3/Chart.min.js">
+</script>
+<style>
+	canvas {
+		-moz-user-select: none; 
+		-webkit-user-select: none;
+		-ms-user-select: none;
+	}
+</style>
+</head>
+
+<body>
+<div id="container" style="width: 75%;">
+	<canvas id="canvas"></canvas>
+</div>
+		<script>
+		var MONTHS = ['January', '2월', 'March', '4월', 'May', '6월', 'July', '8월', 'September', '10월', 'November', '12월'];
+		var barChartData = {
+			labels: MONTHS, // 배열값 12개가 다 들어감
+			datasets: [
+			{
+				type : 'bar',
+				label: 'mix1',
+				backgroundColor: "#ff7761",
+				borderColor: "#ff7761",
+				borderWidth: 1,
+				fill: false,
+				data: [10, 15, 20, -25, 60, 30, -10, 10, 15, 20, -25, 60]
+			},
+			{
+				type : 'line',
+
+				backgroundColor: "#ff7761",
+				borderColor: "#ff7761",
+				borderWidth: 1,
+				fill: false,
+				data: [10, 15, 20, -25, 60, 30, -10, 10, 15, 20, -25, 60]
+			},
+			{
+				type : 'bar',
+				label: 'mix2',
+				backgroundColor: "#a8dba8",
+				borderColor: "#a8dba8",
+				borderWidth: 1,
+				fill: false,
+				data: [15, 20, 50, -35, 50, 20, -5, 15, 20, 50, -35, 10]
+			},
+			{
+				type : 'line',
+//				label: 'mix2',
+				backgroundColor: "#a8dba8",
+				borderColor: "#a8dba8",
+				borderWidth: 1,
+				fill: false,
+				data: [15, 20, 50, -35, 50, 20, -5, 15, 20, 50, -35, 10]
+			}]
+		};
+
+		window.onload = function() {
+			var ctx = document.getElementById('canvas').getContext('2d');
+	
+			window.myMixedChart = new Chart(ctx, {
+				type: 'bar',
+				data: barChartData,
+				options: {
+					responsive: true,
+					legend: {
+						display : false,
+						position: 'top', // 'left','right','top'
+					},
+					title: {
+						display: true,
+						text: '막대 그래프와 선그래프 연습'
+					},
+					scales: {
+						xAxes: [{
+							display: true,
+							scaleLabel: {
+								display: true,
+								labelString: '월'
+							}
+						}],
+						yAxes: [{
+							display: true,
+							scaleLabel: {
+								display: true,
+								labelString: '사용 금액 ￦'
+							}
+						}]
+					}
+				}
+			});
+		};
+	</script>
+</body>
+</html>

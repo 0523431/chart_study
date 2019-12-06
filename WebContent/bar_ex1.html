@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>막대 그래프</title>
+<script type="text/javascript" src="http://www.chartjs.org/dist/2.9.3/Chart.min.js">
+</script>
+<script src="http://www.chartjs.org/samples/latest/utils.js">
+	// 샘플을 쓸 때만 필요한 script
+</script>
+<style>
+	canvas {
+		-moz-user-select: none; 
+		-webkit-user-select: none;
+		-ms-user-select: none;
+	}
+</style>
+</head>
+
+<body>
+<div id="container" style="width: 75%;">
+	<canvas id="canvas"></canvas>
+</div>
+	<button id="randomizeData">Randomize Data</button>
+	<button id="addDataset">Add Dataset</button>
+	<button id="removeDataset">Remove Dataset</button>
+	<button id="addData">Add Data</button>
+	<button id="removeData">Remove Data</button>
+	
+	<script>
+		var MONTHS = ['January', '2월', 'March', '4월', 'May', '6월', 'July', '8월', 'September', '10월', 'November', '12월'];
+		// 컬러 객체
+		var color = Chart.helpers.color;
+		var barChartData = {
+			labels: MONTHS, // 배열값 12개가 다 들어감
+//			labels: ['January', '2월', 'March', '4월', 'May', '6월', 'July'],
+			datasets: [{
+				label: '연습용 막대가 가진 데이터 이름',
+				backgroundColor: color(window.chartColors.purple).alpha(0.6).rgbString(),
+				borderColor: "#791E94",
+				borderWidth: 2,
+				data: [10, 15, 20, -25, 60, 30, -10]
+			},
+			{
+				label: '연습용 막대2',
+				backgroundColor: color(window.chartColors.gray).alpha(0.6).rgbString(),
+				borderColor: color(window.chartColors.black).alpha(0.6).rgbString(),
+				borderWidth: 2,
+				data: [15, 20, 50, -35, 50, 20, -5]
+			},
+			{
+				label: '연습용 막대3',
+				backgroundColor: color(window.chartColors.blue).alpha(0.6).rgbString(),
+				borderColor: color(window.chartColors.blue).alpha(0.6).rgbString(),
+				borderWidth: 2,
+				data: [50, 30, 10, -30, 5, 45, -5, -25]
+			}]
+		};
+
+		window.onload = function() {
+			// ctx : 그래프를 그리기 위한 그림판 지정 (위치)
+			var ctx = document.getElementById('canvas').getContext('2d');
+	
+			// window.myBar : 그래프를 그리기 위한 데이터 객체 ==> 차트
+			window.myBar = new Chart(ctx, {
+				type: 'bar', // 'bar','line','pie'
+				data: barChartData, // 출력 내용
+				options: {
+					responsive: true, // 반응형
+					legend: { // 데이터의 이름
+						position: 'bottom', // 'left','right','top'
+					},
+					title: {
+						display: true,
+						text: '막대 그래프 연습'
+					}
+				}
+			});
+		};
+	</script>
+</body>
+</html>
